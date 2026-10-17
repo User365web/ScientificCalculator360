@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} | {{ site_name }}</title>
+  <meta name="description" content="{{ description }}">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="{{ canonical }}">
+  <meta name="theme-color" content="#155eef">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site_name }}">
+  <meta property="og:title" content="{{ title }} | {{ site_name }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name": {{ site_name|tojson }},
+    "url": {{ (site_origin ~ '/')|tojson }},
+    "description": {{ description|tojson }}
+  }
+  </script>
+  {% block head_extra %}{% endblock %}
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Scientific Calculator 360 home"><span class="brand-mark">∑</span><span>Scientific Calculator <b>360</b></span></a>
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  <nav class="nav-links" aria-label="Main navigation">
+    <a href="/">Calculator</a><a href="/guides">Guides</a><a href="/faq">FAQ</a><a href="/about">About</a>
+  </nav>
+</header>
+<main>{% block content %}{% endblock %}</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><a class="brand footer-brand" href="/"><span class="brand-mark">∑</span><span>Scientific Calculator <b>360</b></span></a><p>Free tools for everyday maths, study, and engineering.</p></div>
+    <div class="footer-links"><a href="/guides">Math Guides</a><a href="/faq">FAQ</a><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Use</a></div>
+  </div>
+  <p class="copyright">© {{ current_year }} {{ site_name }}. Check important results independently.</p>
+</footer>
+<script>
+const menuButton = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.nav-links');
+if (menuButton && nav) menuButton.addEventListener('click', () => {
+  const opened = nav.classList.toggle('nav-open');
+  menuButton.setAttribute('aria-expanded', String(opened));
+});
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

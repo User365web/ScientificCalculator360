@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block head_extra %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Scientific Calculator 360","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online scientific calculator with trigonometry, logarithms, powers, roots and memory functions."}
+</script>
+{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">FREE ONLINE MATH TOOL</span>
+    <h1>Scientific Calculator</h1>
+    <p>Powerful calculations, without the complicated setup. Use trigonometry, logarithms, powers, roots, and more in your browser.</p>
+    <div class="hero-points"><span>✓ Free to use</span><span>✓ Mobile friendly</span><span>✓ No account needed</span></div>
+  </div>
+  <div class="hero-art" aria-hidden="true"><div class="art-card"><span>sin(x)</span><span>√x</span><span>π</span><span>log(x)</span><span>x²</span><span>cos(x)</span></div></div>
+</section>
+<section class="calculator-section" aria-labelledby="calc-title">
+  <div class="section-heading"><div><span class="eyebrow">CALCULATE</span><h2 id="calc-title">Your calculator</h2></div><div class="angle-switch"><label for="angleMode">Angle mode</label><select id="angleMode"><option value="DEG">Degrees</option><option value="RAD">Radians</option></select></div></div>
+  <div class="calculator">
+    <div class="calc-top"><span>SCIENTIFIC</span><button id="historyToggle" class="small-btn" type="button">History</button></div>
+    <div class="display">
+      <div id="expression" class="expression" aria-live="polite"></div>
+      <input id="display" class="result" aria-label="Calculator display" value="0" inputmode="decimal" autocomplete="off">
+      <div id="calcError" class="calc-error" role="status"></div>
+    </div>
+    <div class="keypad" id="keypad">
+      <button class="key function" data-action="clear">AC</button><button class="key function" data-action="delete">DEL</button><button class="key function" data-insert="(">(</button><button class="key function" data-insert=")">)</button><button class="key operator" data-insert="/">÷</button>
+      <button class="key function" data-insert="sin(">sin</button><button class="key function" data-insert="cos(">cos</button><button class="key function" data-insert="tan(">tan</button><button class="key function" data-insert="sqrt(">√</button><button class="key operator" data-insert="*">×</button>
+      <button class="key function" data-insert="log(">log</button><button class="key function" data-insert="ln(">ln</button><button class="key function" data-insert="^2">x²</button><button class="key function" data-insert="^">xʸ</button><button class="key operator" data-insert="-">−</button>
+      <button class="key function" data-insert="π">π</button><button class="key function" data-insert="e">e</button><button class="key function" data-insert="abs(">abs</button><button class="key function" data-insert="!">n!</button><button class="key operator" data-insert="+">+</button>
+      <button class="key" data-insert="7">7</button><button class="key" data-insert="8">8</button><button class="key" data-insert="9">9</button><button class="key function" data-insert="%">%</button><button class="key function" data-insert="Ans">Ans</button>
+      <button class="key" data-insert="4">4</button><button class="key" data-insert="5">5</button><button class="key" data-insert="6">6</button><button class="key function" data-insert="1/">1/x</button><button class="key function" data-insert="10^(">10ˣ</button>
+      <button class="key" data-insert="1">1</button><button class="key" data-insert="2">2</button><button class="key" data-insert="3">3</button><button class="key function" data-insert="^0.5">√x</button><button class="key operator" data-insert="*">×</button>
+      <button class="key" data-insert="0">0</button><button class="key" data-insert=".">.</button><button class="key function" data-insert="00">00</button><button class="key equals" data-action="equals">=</button><button class="key operator" data-insert="+">+</button>
+    </div>
+    <div class="calc-bottom"><span>Tip: use your keyboard, Enter to calculate, Esc to clear.</span><button class="text-btn" id="clearHistory" type="button">Clear history</button></div>
+    <ol id="historyList" class="history-list" hidden></ol>
+  </div>
+  <p class="privacy-note">Calculations are performed in your browser. Your expressions are not sent to this website.</p>
+</section>
+<section class="feature-grid">
+  <article class="feature-card"><span class="feature-icon">∠</span><h3>Trigonometry</h3><p>Calculate sine, cosine, and tangent with degree or radian mode.</p></article>
+  <article class="feature-card"><span class="feature-icon">√</span><h3>Powers and roots</h3><p>Work with exponents, square roots, and scientific notation.</p></article>
+  <article class="feature-card"><span class="feature-icon">ln</span><h3>Logarithms</h3><p>Use common logarithms and natural logarithms in a few clicks.</p></article>
+  <article class="feature-card"><span class="feature-icon">%</span><h3>Everyday maths</h3><p>Handle percentages, factorials, constants, and basic arithmetic.</p></article>
+</section>
+<section class="content-section"><span class="eyebrow">LEARN MATHS</span><h2>Calculator guides and explanations</h2><p>Build confidence with clear explanations and worked examples.</p><div class="article-links"><a href="/guides/scientific-calculator-guide"><b>How to Use a Scientific Calculator</b><span>Functions, order of operations, and practical examples →</span></a><a href="/guides/trigonometry-basics"><b>Trigonometry Basics</b><span>Sine, cosine, tangent, and angle modes →</span></a><a href="/guides/percentages-and-ratios"><b>Percentages and Ratios</b><span>Understand percentage change and proportions →</span></a></div></section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='calculator.js') }}" defer></script>{% endblock %}
